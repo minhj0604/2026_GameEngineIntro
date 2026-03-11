@@ -1,2 +1,4 @@
-# 2026_GameEngineIntro
-게임입문 프로젝트
+# 2026\_GameEngineIntro
+
+2026137011 민효주
+
