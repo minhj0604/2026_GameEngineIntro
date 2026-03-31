@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+        else if (collision.name == "TitleDoor")
+        {
+            SceneManager.LoadScene("TitleScene");
+        }
         else
         {
             SceneManager.LoadScene("PlayScene_" + collision.name);
