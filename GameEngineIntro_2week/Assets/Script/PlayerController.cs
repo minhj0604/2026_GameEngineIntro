@@ -20,6 +20,11 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene("TitleScene");
         }
+        else if (collision.CompareTag("Finish"))
+        {
+            StageResultSaver.SaveStage(SceneManager.GetActiveScene().buildIndex, (int)score);
+            collision.GetComponent<LevelObject>().moveToNextLevel();
+        }
         else
         {
             SceneManager.LoadScene("PlayScene_" + collision.name);
