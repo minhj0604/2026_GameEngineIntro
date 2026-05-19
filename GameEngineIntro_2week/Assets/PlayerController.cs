@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float jumpforce = 7f;
     private Rigidbody2D rb;
     private Animator myAnimator;
+    public int score;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -18,14 +20,32 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.name == "TitleDoor")
         {
+          
+            StageResultSaver.SaveStage(SceneManager.GetActiveScene().buildIndex, score);
             SceneManager.LoadScene("TitleScene");
         }
-        else
+        else if (collision.name == "Door") 
         {
+            
+            StageResultSaver.SaveStage(SceneManager.GetActiveScene().buildIndex, score);
+            SceneManager.LoadScene("PlayScene_" + collision.name);
+        }
+        
+        else if (collision.CompareTag("Item"))
+        {
+            score += collision.GetComponent<ItemObject>().GetPoint();
+            Destroy(collision.gameObject);
+        }
+        else 
+        {
+           
+            int currentStage = SceneManager.GetActiveScene().buildIndex;
+            StageResultSaver.SaveStage(currentStage, score); 
+
             SceneManager.LoadScene("PlayScene_" + collision.name);
         }
     }
-    void Start()
+        void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();

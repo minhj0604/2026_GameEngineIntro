@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class TitleManagerScript : MonoBehaviour
 {
     public GameObject helpPanel;
+    public GameObject leaderboard;
    /* public void ButtonLog()
     {
         Debug.Log("버튼 눌림!");
@@ -21,5 +22,13 @@ public class TitleManagerScript : MonoBehaviour
     public void CloseHelp()
     {
        helpPanel.SetActive(false);
+    }
+    public void OpenLB()
+    {
+        leaderboard.SetActive(true);
+    }
+    public void CloseLB()
+    {
+        leaderboard.SetActive(false);
     }
 }
